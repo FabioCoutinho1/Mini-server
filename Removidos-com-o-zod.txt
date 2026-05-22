@@ -1,0 +1,45 @@
+ if (isNaN(index) || index < 0) {
+      return {
+        ok: false,
+        error: "Index inválido",
+      };
+    }
+
+    if (!users[index]) {
+      return {
+        ok: false,
+        error: "Usuário não existe",
+      };
+    }
+
+    if (
+      data.name === undefined &&
+      data.done === undefined &&
+      data.favorite === undefined
+    ) {
+      return {
+        ok: false,
+        error: "Envie ao menos um campo",
+      };
+    }
+
+    if (data.name !== undefined && typeof data.name !== "string") {
+      return {
+        ok: false,
+        error: "Name inválido",
+      };
+    }
+
+    if (data.done !== undefined && typeof data.done !== "boolean") {
+      return {
+        ok: false,
+        error: "Done inválido",
+      };
+    }
+
+    if (data.favorite !== undefined && typeof data.favorite !== "boolean") {
+      return {
+        ok: false,
+        error: "Favorite inválido",
+      };
+    }
