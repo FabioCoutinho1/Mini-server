@@ -2,11 +2,11 @@ import type { CreateTaskDTO } from "../schemas/create-task.schema.js";
 import type { UpdateTaskDTO } from "../schemas/update-task.schema.js";
 import type { ITaskRepository } from "../repository/ITaskRepository.js";
 
-export class UserService {
-  private userRepository: ITaskRepository;
+export class TaskService {
+  private taskRepository: ITaskRepository;
 
-  constructor(userRepository: ITaskRepository) {
-    this.userRepository = userRepository;
+  constructor(taskRepository: ITaskRepository) {
+    this.taskRepository = taskRepository;
   }
 
   private validationTaskIndex = (id: number) => {
@@ -16,22 +16,22 @@ export class UserService {
   };
 
   public fildAllTaskService = () => {
-    return this.userRepository.getAllTasks();
+    return this.taskRepository.getAllTasks();
   };
 
   public creatTaskService = async (data: CreateTaskDTO) => {
-    return this.userRepository.addTask(data);
+    return this.taskRepository.addTask(data);
   };
 
   public updateTaskService = async (id: number, data: UpdateTaskDTO) => {
     this.validationTaskIndex(id);
 
-    return this.userRepository.updateTask(id, data);
+    return this.taskRepository.updateTask(id, data);
   };
 
   public deleteTaskService = async (id: number) => {
     this.validationTaskIndex(id);
 
-    return this.userRepository.deleteTask(id);
+    return this.taskRepository.deleteTask(id);
   };
 }

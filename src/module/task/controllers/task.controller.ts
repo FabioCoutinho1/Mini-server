@@ -1,15 +1,15 @@
 import type { Request, Response } from "express";
 
-import { UserService } from "../services/user.service.js";
-import { UserRepository } from "../repository/user.repository.js";
+import { TaskService } from "../services/task.service.js";
+import { TaskRepository } from "../repository/task.repository.js";
 import { createTaskSchema } from "../schemas/create-task.schema.js";
 import { updateTaskSchema } from "../schemas/update-task.schema.js";
 
-const userService = new UserService(new UserRepository());
+const taskService = new TaskService(new TaskRepository());
 
-export class UserController {
+export class TaskController {
   public getTaskController = async (req: Request, res: Response) => {
-    const tasks = await userService.fildAllTaskService();
+    const tasks = await taskService.fildAllTaskService();
 
     return res.status(200).json({ tasks });
   };
@@ -21,7 +21,7 @@ export class UserController {
       return res.status(400).json({ erro: error.flatten() });
     }
 
-    const addTask = await userService.creatTaskService(data);
+    const addTask = await taskService.creatTaskService(data);
     return res.status(200).json({ success, addTask });
   };
 
@@ -34,14 +34,14 @@ export class UserController {
       return res.status(400).json({ error: error.flatten() });
     }
 
-    const taskUpdate = await userService.updateTaskService(Number(id), data);
+    const taskUpdate = await taskService.updateTaskService(Number(id), data);
     return res.status(200).json(taskUpdate);
   };
 
   public deleteTaskController = (req: Request, res: Response): any => {
     const id = req.params.id;
 
-    userService.deleteTaskService(Number(id));
+    taskService.deleteTaskService(Number(id));
 
     return res.status(200).json({ message: "Usuario apagado como sucesso" });
   };

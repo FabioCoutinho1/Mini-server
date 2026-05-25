@@ -1,10 +1,9 @@
 import type { CreateTaskDTO } from "../schemas/create-task.schema.js";
 import type { UpdateTaskDTO } from "../schemas/update-task.schema.js";
-import { Task } from "../entities/task.entity.js";
-import { prisma } from "../lib/prisma.js";
+import { prisma } from "../../../lib/prisma.js";
 import { MapperTask } from "../mappers/task.mapper.js";
 
-export class UserRepository {
+export class TaskRepository {
   public getAllTasks = async () => {
     const tasks = await prisma.tasks.findMany();
     return tasks;

@@ -1,5 +1,5 @@
 import express from "express";
-import usersRouter from "../module/task/routers/users.route.js";
+import usersRouter from "../routers/users.route.js";
 import cors, { type CorsOptions } from "cors";
 
 const app = express();
