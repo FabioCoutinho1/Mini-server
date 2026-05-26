@@ -5,11 +5,23 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model tasks {
-  id       Int     @id @default(autoincrement())
-  name     String  @db.VarChar(100)
-  done     Boolean @default(false)
-  favorite Boolean @default(false)
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(100)
+  done      Boolean  @default(false)
+  favorite  Boolean  @default(false)
+  create_at DateTime @default(now()) @db.Timestamptz(6)
+  user_id   Int
+  users     users    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_id")
+}
+
+model users {
+  id        Int      @id @default(autoincrement())
+  user_name String   @unique(map: "unique_user_name") @db.VarChar(100)
+  password  String   @db.VarChar(255)
+  create_at DateTime @default(now()) @db.Timestamptz(6)
+  tasks     tasks[]
 }
