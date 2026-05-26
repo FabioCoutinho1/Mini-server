@@ -10,18 +10,23 @@ const userService = new UserService(new UserRepositorey());
 
 export class UserCotroller {
   public getByNameController = async (req: Request, res: Response) => {
-    const { data, success, error } = findBynameSchema.safeParse(req.body);
+    const { data, error } = findBynameSchema.safeParse(req.body);
 
     if (error) {
       return res.status(400).json({ error: error.flatten });
     }
 
-    await userService.findByNameService(data);
-    return res.status(200).json(success);
+    const userByName = await userService.findByNameService(data);
+    return res
+      .status(200)
+      .json({
+        user_name: userByName.user_name,
+        create_at: userByName.create_at,
+      });
   };
 
   public createNewUserController = async (req: Request, res: Response) => {
-    const { data, success, error } = createUserSchema.safeParse(req.body);
+    const { data, error } = createUserSchema.safeParse(req.body);
 
     if (error) {
       return res.status(400).json({ error: error.flatten });

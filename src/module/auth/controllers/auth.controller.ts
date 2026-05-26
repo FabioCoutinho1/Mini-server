@@ -18,6 +18,8 @@ export class AuthController {
       return res.status(400).json({ message: "Credencias Invalidas" });
     }
 
-    return res.status(200).json(login);
+    return res
+      .status(200)
+      .json({ token: login.token, user: { user_name: login.user.user_name } });
   };
 }

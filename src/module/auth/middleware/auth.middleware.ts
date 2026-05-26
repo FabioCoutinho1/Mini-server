@@ -14,7 +14,7 @@ export class Middleware {
     try {
       const decode = jwt.verify(token!, process.env.JWT_SECRET!);
 
-      req.userId = decode.sub as string;
+      req.userId = Number(decode.sub) as number;
 
       next();
     } catch {

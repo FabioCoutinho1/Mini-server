@@ -3,8 +3,8 @@ import type { UpdateTaskDTO } from "../schemas/update-task.schema.js";
 import type { Task } from "../entities/task.entity.js";
 
 export interface ITaskRepository {
-  getAllTasks(): Promise<Task[]>;
-  addTask(name: CreateTaskDTO): Promise<Task>;
-  updateTask(index: number, value: UpdateTaskDTO): Promise<Task>;
-  deleteTask(index: number): Promise<Task>;
+  getAllByUserIdTasks(userId: number): Promise<Task[]>;
+  addTask(data: CreateTaskDTO): Promise<Task>;
+  updateTask(id: number, user_id: number, data: UpdateTaskDTO): Promise<Task>;
+  deleteTask(id: number, user_id: number): Promise<Task>;
 }

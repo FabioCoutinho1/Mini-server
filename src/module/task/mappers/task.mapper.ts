@@ -9,7 +9,7 @@ export class MapperTask {
       task.done,
       task.favorite,
       task.create_at,
-      task.user_id
+      task.user_id,
     );
   }
 }

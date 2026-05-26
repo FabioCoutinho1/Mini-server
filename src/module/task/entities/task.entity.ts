@@ -5,6 +5,6 @@ export class Task {
     public done: boolean,
     public favorite: boolean,
     public create_at: Date,
-    public user_id: number
+    public user_id: number,
   ) {}
 }

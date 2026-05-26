@@ -32,7 +32,7 @@ usersRouter.delete(
 
 /* Routers of user */
 
-usersRouter.post("/user", userController.getByNameController);
+usersRouter.post("/user", authMiddleware, userController.getByNameController);
 usersRouter.post("/createUser", userController.createNewUserController);
 
 /* Routers of login */

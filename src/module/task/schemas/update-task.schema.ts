@@ -1,6 +1,5 @@
 import z, { boolean, string } from "zod";
 
-
 export const updateTaskSchema = z
   .object({
     name: string().min(3).optional(),
@@ -15,4 +14,4 @@ export const updateTaskSchema = z
     { message: "Envie ao menos um campo" },
   );
 
-export type UpdateTaskDTO = Partial<z.infer<typeof updateTaskSchema>>;
+export type UpdateTaskDTO = z.infer<typeof updateTaskSchema>;
