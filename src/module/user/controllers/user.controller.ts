@@ -24,7 +24,7 @@ export class UserCotroller {
     const { data, success, error } = createUserSchema.safeParse(req.body);
 
     if (error) {
-      return res.status(400).json({ error: error });
+      return res.status(400).json({ error: error.flatten });
     }
 
     const userCreated = await userService.createUserService(data);
